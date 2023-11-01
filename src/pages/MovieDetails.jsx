@@ -1,9 +1,25 @@
+import Details from 'components/Details/Details';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { fetchMovieById } from 'services/api';
 
-const MovieDetailsPage = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
 
-  return <div>MovieDetailsPage {movieId}</div>;
+  useEffect(() => {
+    fetchMovieById(movieId).then(data => setMovie(data));
+  }, [movieId]);
+
+  return (
+    <div className="container">
+      {movie && (
+        <div>
+          <Details movie={movie} />
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default MovieDetailsPage;
+export default MovieDetails;
