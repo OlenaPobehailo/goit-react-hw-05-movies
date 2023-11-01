@@ -1,17 +1,22 @@
 import { useHttpRequest } from 'hooks/useHttpRequest';
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { basePosterUrl, fetchCast } from 'services/api';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast] = useHttpRequest(fetchCast, movieId);
+  const [cast, { isLoading, error }] = useHttpRequest(fetchCast, movieId);
 
   // console.log(cast);
+  if (isLoading) {
+    return <h2>Loading cast...</h2>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
-      Cast
       <ul>
         {cast &&
           cast.map(item => (

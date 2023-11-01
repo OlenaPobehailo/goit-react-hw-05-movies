@@ -11,7 +11,12 @@ const Movies = () => {
     searchStr: '',
   });
   const searchQuery = searchParams.get('searchStr');
-  const [searchMovies] = useHttpRequest(fetchMoviesByQuery, searchQuery);
+  const [searchMovies, { isLoading, error }] = useHttpRequest(
+    fetchMoviesByQuery,
+    searchQuery
+  );
+
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   const handleInputChange = e => {
     setSearchStr(e.target.value);
@@ -21,6 +26,7 @@ const Movies = () => {
     e.preventDefault();
     setSearchParams({ searchStr });
     setSearchStr('');
+    setSearchPerformed(true);
   };
 
   // console.log('searchMovies', searchMovies);
@@ -32,10 +38,17 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
 
-      {searchMovies ? (
-        <MovieList movies={searchMovies} />
+      {isLoading && <h1>Loading...</h1>}
+      {error && <p>Error: {error}</p>}
+
+      {searchPerformed &&
+      !isLoading &&
+      !error &&
+      searchMovies &&
+      searchMovies.length === 0 ? (
+        <h1>No movies found</h1>
       ) : (
-        <p>No movies found</p>
+        searchMovies && <MovieList movies={searchMovies} />
       )}
     </div>
   );

@@ -31,7 +31,7 @@ const Details = ({ movie }) => {
         <Link to="reviews">Reviews</Link>
       </div>
       <div>
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<h1>Loading details...</h1>}>
           <Outlet />
         </Suspense>
       </div>

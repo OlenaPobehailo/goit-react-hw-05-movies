@@ -4,9 +4,16 @@ import { fetchReviews } from 'services/api';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews] = useHttpRequest(fetchReviews, movieId);
+  const [reviews, { isLoading, error }] = useHttpRequest(fetchReviews, movieId);
 
   // console.log(reviews);
+  if (isLoading) {
+    return <h2>Loading reviews...</h2>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <ul>

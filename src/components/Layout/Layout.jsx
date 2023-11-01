@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { StyledMenuWrapper, StyledNavLink } from './Layout.styled';
 
@@ -15,7 +15,7 @@ const Layout = () => {
           </li>
         </ul>
       </StyledMenuWrapper>
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<h1>Loading main layout...</h1>}>
         <Outlet />
       </Suspense>
     </>
