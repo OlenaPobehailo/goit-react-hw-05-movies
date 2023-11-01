@@ -1,8 +1,8 @@
-import { basePosterUrl } from 'services/api';
-import { Additional, Info, StyledWrapper } from './Details.styled';
-import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { basePosterUrl } from 'services/api';
 import calculateUserScore from 'helpers/calculateUserScore';
+import { Additional, Info, StyledWrapper } from './Details.styled';
 
 const Details = ({ movie }) => {
   // console.log(movie);
@@ -25,11 +25,8 @@ const Details = ({ movie }) => {
     <>
       <StyledWrapper>
         <img
-          src={posterPath}
+          src={posterPath || 'https://placehold.co/350x500?text=Not+available'}
           alt={title}
-          onError={e => {
-            e.target.src = 'https://placehold.co/350x500?text=Not+available';
-          }}
         />
 
         <Info>

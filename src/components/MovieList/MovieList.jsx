@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
+import { StyledList } from './MovieList.styled';
 
 const MovieList = ({ movies }) => {
   const location = useLocation();
   return (
-    <ul>
+    <StyledList>
       {movies &&
         movies.map(movie => (
           <li key={movie.id}>
@@ -12,7 +13,7 @@ const MovieList = ({ movies }) => {
             </Link>
           </li>
         ))}
-    </ul>
+    </StyledList>
   );
 };
 

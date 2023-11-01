@@ -12,7 +12,6 @@ export const StyledWrapper = styled.div`
 
 export const Info = styled.div`
   padding: 1.5rem;
-  outline: 1px solid red;
 
   h2 {
     margin-bottom: 2.5rem;

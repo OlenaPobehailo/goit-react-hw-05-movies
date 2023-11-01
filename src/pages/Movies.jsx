@@ -1,7 +1,8 @@
-import MovieList from 'components/MovieList';
-import { useHttpRequest } from 'hooks/useHttpRequest';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Loader from 'components/Loader';
+import MovieList from 'components/MovieList';
+import { useHttpRequest } from 'hooks/useHttpRequest';
 import { fetchMoviesByQuery } from 'services/api';
 
 const Movies = () => {
@@ -29,8 +30,6 @@ const Movies = () => {
     setSearchPerformed(true);
   };
 
-    // console.log('searchMovies', searchMovies);
-
   return (
     <div className="container">
       <form onSubmit={handleFormSubmit}>
@@ -38,7 +37,7 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
 
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading && <Loader/>}
       {error && <p>Error: {error}</p>}
 
       {searchPerformed &&

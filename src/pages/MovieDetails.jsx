@@ -1,7 +1,8 @@
-import Details from 'components/Details/Details';
-import { useHttpRequest } from 'hooks/useHttpRequest';
 import { useRef } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import Details from 'components/Details/Details';
+import Loader from 'components/Loader';
+import { useHttpRequest } from 'hooks/useHttpRequest';
 import { fetchMovieById } from 'services/api';
 
 const MovieDetails = () => {
@@ -15,7 +16,7 @@ const MovieDetails = () => {
     <div className="container">
       <Link to={backRef.current}>Back</Link>
 
-      {isLoading && <h1>Loading movie details...</h1>}
+      {isLoading && <Loader/>}
       {error && <p>Error: {error}</p>}
 
       {movie && (

@@ -1,4 +1,5 @@
 import MovieList from 'components/MovieList';
+import Loader from 'components/Loader';
 import { useHttpRequest } from 'hooks/useHttpRequest';
 import { fetchTrendingMovies } from 'services/api';
 
@@ -6,11 +7,9 @@ const Home = ({ movies }) => {
   const [trendingMovies, { isLoading, error }] =
     useHttpRequest(fetchTrendingMovies);
 
-  // console.log(trendingMovies);
-
   return (
     <div className="container">
-      {isLoading && <h1>Loading trending movies...</h1>}
+      {isLoading && <Loader/>}
       {error && <p>Error: {error}</p>}
       {trendingMovies && <MovieList movies={trendingMovies} />}
     </div>
