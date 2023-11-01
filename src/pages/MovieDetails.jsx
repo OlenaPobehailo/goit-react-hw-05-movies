@@ -1,15 +1,15 @@
 import Details from 'components/Details/Details';
-import { useEffect, useState } from 'react';
+import { useHttpRequest } from 'hooks/useHttpRequest';
 import { useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movie] = useHttpRequest(fetchMovieById, movieId);
 
-  useEffect(() => {
-    fetchMovieById(movieId).then(data => setMovie(data));
-  }, [movieId]);
+  if (!movie) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div className="container">
