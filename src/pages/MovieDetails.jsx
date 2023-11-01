@@ -8,7 +8,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   // console.log(location);
-  const backRef = useRef(location.state?.from);
+  const backRef = useRef(location.state?.from||'/');
   const [movie] = useHttpRequest(fetchMovieById, movieId);
 
   if (!movie) {
