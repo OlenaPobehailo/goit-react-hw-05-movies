@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Details = ({ movie }) => {
   // console.log(movie);
+  
   const { title, overview, genres, poster_path } = movie;
 
   const posterPath = poster_path ? basePosterUrl + poster_path : null;

@@ -1,10 +1,14 @@
 import Details from 'components/Details/Details';
 import { useHttpRequest } from 'hooks/useHttpRequest';
-import { useParams } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const location = useLocation();
+  // console.log(location);
+  const backRef = useRef(location.state?.from);
   const [movie] = useHttpRequest(fetchMovieById, movieId);
 
   if (!movie) {
@@ -13,6 +17,7 @@ const MovieDetails = () => {
 
   return (
     <div className="container">
+      <Link to={backRef.current}>Back</Link>
       {movie && (
         <div>
           <Details movie={movie} />

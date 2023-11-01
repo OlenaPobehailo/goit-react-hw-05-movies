@@ -15,7 +15,7 @@ const Cast = () => {
       <ul>
         {cast &&
           cast.map(item => (
-            <li key={cast.id}>
+            <li key={item.id}>
               <img
                 src={`${basePosterUrl}${item.profile_path}`}
                 alt={item.name}
