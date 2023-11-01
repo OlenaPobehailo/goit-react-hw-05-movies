@@ -1,10 +1,11 @@
 import { basePosterUrl } from 'services/api';
 import { Info, StyledWrapper } from './Details.styled';
 import { Link, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const Details = ({ movie }) => {
   // console.log(movie);
-  
+
   const { title, overview, genres, poster_path } = movie;
 
   const posterPath = poster_path ? basePosterUrl + poster_path : null;
@@ -30,7 +31,9 @@ const Details = ({ movie }) => {
         <Link to="reviews">Reviews</Link>
       </div>
       <div>
-        <Outlet />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );
