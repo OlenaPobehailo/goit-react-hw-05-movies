@@ -6,14 +6,14 @@ const Layout = () => {
   return (
     <>
       <StyledMenuWrapper>
-          <ul>
-            <li>
-              <StyledNavLink to="/">Home</StyledNavLink>
-            </li>
-            <li>
-              <StyledNavLink to="movies">Movies</StyledNavLink>
-            </li>
-          </ul>
+        <ul>
+          <li>
+            <StyledNavLink to="/">Home</StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="movies">Movies</StyledNavLink>
+          </li>
+        </ul>
       </StyledMenuWrapper>
       <Outlet />
     </>
