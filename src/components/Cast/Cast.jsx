@@ -1,6 +1,7 @@
 import { useHttpRequest } from 'hooks/useHttpRequest';
 import { useParams } from 'react-router-dom';
 import { basePosterUrl, fetchCast } from 'services/api';
+import { Actor, Character, StyledList, Wrapper } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -16,22 +17,25 @@ const Cast = () => {
   }
 
   return (
-    <div>
-      <ul>
-        {cast &&
-          cast.map(item => (
-            <li key={item.id}>
-              <img
-                src={`${basePosterUrl}${item.profile_path}`}
-                alt={item.name}
-              />
-              <p>{item.name}</p>
+    <StyledList>
+      {cast &&
+        cast.map(item => (
+          <li key={item.id}>
+            <img
+              src={`${basePosterUrl}${item.profile_path}`}
+              alt={item.name}
+              onError={e => {
+                e.target.src = 'https://placehold.co/350x500?text=Not+available';
+              }}
+            />
+            <Wrapper>
+              <Actor>{item.name}</Actor>
 
-              <p>Character: {item.character}</p>
-            </li>
-          ))}
-      </ul>
-    </div>
+              <Character>Character: {item.character}</Character>
+            </Wrapper>
+          </li>
+        ))}
+    </StyledList>
   );
 };
 

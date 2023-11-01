@@ -29,7 +29,7 @@ const Movies = () => {
     setSearchPerformed(true);
   };
 
-  // console.log('searchMovies', searchMovies);
+    // console.log('searchMovies', searchMovies);
 
   return (
     <div className="container">
@@ -38,14 +38,13 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
 
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && <h2>Loading...</h2>}
       {error && <p>Error: {error}</p>}
 
       {searchPerformed &&
-      !isLoading &&
-      !error &&
-      searchMovies &&
-      searchMovies.length === 0 ? (
+       !isLoading && 
+       searchMovies && 
+       searchMovies.length === 0 ? (
         <h1>No movies found</h1>
       ) : (
         searchMovies && <MovieList movies={searchMovies} />

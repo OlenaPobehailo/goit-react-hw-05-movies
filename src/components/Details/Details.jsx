@@ -1,5 +1,5 @@
 import { basePosterUrl } from 'services/api';
-import { Info, StyledWrapper } from './Details.styled';
+import { Additional, Info, StyledWrapper } from './Details.styled';
 import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import calculateUserScore from 'helpers/calculateUserScore';
@@ -24,7 +24,13 @@ const Details = ({ movie }) => {
   return (
     <>
       <StyledWrapper>
-        <img src={posterPath} alt={title} />
+        <img
+          src={posterPath}
+          alt={title}
+          onError={e => {
+            e.target.src = 'https://placehold.co/350x500?text=Not+available';
+          }}
+        />
 
         <Info>
           <h2>
@@ -37,13 +43,13 @@ const Details = ({ movie }) => {
           <p>{genreList ? genreList : 'no information available'}</p>
         </Info>
       </StyledWrapper>
-      <div>
-        <p>Additional information</p>
+      <Additional>
+        <p>Additional information:</p>
         <Link to="cast">Cast</Link>
         <Link to="reviews">Reviews</Link>
-      </div>
+      </Additional>
       <div>
-        <Suspense fallback={<h1>Loading details...</h1>}>
+        <Suspense fallback={<h2>Loading additional information...</h2>}>
           <Outlet />
         </Suspense>
       </div>

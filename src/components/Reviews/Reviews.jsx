@@ -1,6 +1,7 @@
 import { useHttpRequest } from 'hooks/useHttpRequest';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'services/api';
+import { Author, Content, StyledList } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -15,16 +16,20 @@ const Reviews = () => {
     return <p>Error: {error}</p>;
   }
 
+  if (!reviews || reviews.length === 0) {
+    return <h2>No reviews available.</h2>;
+  }
+
   return (
-    <ul>
+    <StyledList>
       {reviews &&
         reviews.map(item => (
           <li key={item.id}>
-            <p>{`Author: ${item.author}`}</p>
-            <p>{item.content}</p>
+            <Author>{`Author: ${item.author}`}</Author>
+            <Content>{item.content}</Content>
           </li>
         ))}
-    </ul>
+    </StyledList>
   );
 };
 
