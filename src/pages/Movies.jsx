@@ -8,7 +8,7 @@ const Movies = () => {
   const [searchStr, setSearchStr] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams({
-    search: '',
+    searchStr: '',
   });
   const searchQuery = searchParams.get('search');
   const [searchMovies] = useHttpRequest(fetchMoviesByQuery, searchQuery);
