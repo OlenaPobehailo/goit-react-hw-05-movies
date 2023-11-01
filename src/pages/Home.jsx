@@ -5,7 +5,7 @@ import { fetchTrendingMovies } from 'services/api';
 const Home = ({ movies }) => {
   const [trendingMovies] = useHttpRequest(fetchTrendingMovies);
 
-  console.log(trendingMovies);
+  // console.log(trendingMovies);
 
   return (
     <div className="container">

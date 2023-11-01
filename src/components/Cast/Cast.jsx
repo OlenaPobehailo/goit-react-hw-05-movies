@@ -7,8 +7,8 @@ const Cast = () => {
   const { movieId } = useParams();
   const [cast] = useHttpRequest(fetchCast, movieId);
 
-  console.log(movieId);
-  console.log(cast);
+  // console.log(cast);
+
   return (
     <div>
       Cast

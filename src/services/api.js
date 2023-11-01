@@ -10,18 +10,24 @@ export const fetchTrendingMovies = async params => {
   const { data } = await axios.get(`/trending/movie/day`, {
     params: { ...params },
   });
-  console.log(data.results);
+  // console.log(data.results);
   return data.results;
 };
 
 export const fetchMovieById = async id => {
   const { data } = await axios.get(`/movie/${id}`);
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
 export const fetchCast = async id => {
   const { data } = await axios.get(`/movie/${id}/credits`);
-  console.log(data.cast);
+  // console.log(data.cast);
   return data.cast;
+};
+
+export const fetchReviews = async id => {
+  const { data } = await axios.get(`/movie/${id}/reviews`);
+  // console.log(data.results);
+  return data.results;
 };
