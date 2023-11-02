@@ -1,12 +1,11 @@
 import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { basePosterUrl } from 'services/api';
 import calculateUserScore from 'helpers/calculateUserScore';
 import { Additional, Info, StyledWrapper } from './Details.styled';
 
 const Details = ({ movie }) => {
-  // console.log(movie);
-
   const {
     title,
     overview,
@@ -52,6 +51,22 @@ const Details = ({ movie }) => {
       </div>
     </>
   );
+};
+
+Details.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })
+    ),
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+  }),
 };
 
 export default Details;
